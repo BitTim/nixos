@@ -1,12 +1,7 @@
 { ... }: {
   flake.nixosModules.greenhouseConfiguration = { pkgs, ... }: {
-    networking.hostName = "greenhouse";
+    imports = [ ./_hardware-configuration.nix ];
 
-    environment.systemPackages = with pkgs; [
-      vim
-      git
-      curl
-      wget
-    ];
+    networking.hostName = "greenhouse";
   };
 }

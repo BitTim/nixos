@@ -5,6 +5,7 @@
       modules = with self.nixosModules; [
         user
         nix
+        ssh
       ];
     in
     {
