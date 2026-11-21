@@ -4,6 +4,7 @@
     let
       modules = with self.nixosModules; [
         user
+        locale
         nix
         ssh
       ];
