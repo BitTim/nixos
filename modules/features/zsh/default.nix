@@ -19,6 +19,9 @@
         hf = lib.getExe pkgs.hyfetch;
         cat = lib.getExe pkgs.bat;
       };
+      zshrc.content = ''
+        eval "$(starship init zsh)"
+        	  '';
     };
   };
 }
