@@ -2,6 +2,7 @@
   flake.nixosModules.hyfetch = moduleWithSystem (
     { pkgs, self', ... }: {
       environment.systemPackages = [
+        pkgs.fastfetch
         self'.packages.hyfetch
       ];
     }
