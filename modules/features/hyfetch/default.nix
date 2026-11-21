@@ -1,9 +1,9 @@
 { moduleWithSystem, inputs, ... }: {
   flake.nixosModules.hyfetch = moduleWithSystem (
     { pkgs, self', ... }: {
-      programs.hyfetch = {
-        package = self'.packages.hyfetch;
-      };
+      environment.systemPackages = [
+        self'.packages.hyfetch
+      ];
     }
   );
 
