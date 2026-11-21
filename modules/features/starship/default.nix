@@ -1,7 +1,10 @@
 { moduleWithSystem, inputs, ... }: {
   flake.nixosModules.starship = moduleWithSystem (
     { self', ... }: {
-      environment.systemPackages = [ self'.packages.starship ];
+      programs.starship = {
+        enable = true;
+        package = self'.packages.starship;
+      };
     }
   );
 
