@@ -8,7 +8,7 @@
   );
 
   perSystem = { pkgs, ... }: {
-    packages.hyfetch = inputs.wrappers.hyfetch.wrap {
+    packages.hyfetch = inputs.wrappers.wrappers.hyfetch.wrap {
       inherit pkgs;
       settings = {
         preset = [
