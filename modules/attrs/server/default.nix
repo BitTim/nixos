@@ -8,6 +8,7 @@
         zsh
         git
         tailscale
+        hyfetch
       ];
     in
     {
