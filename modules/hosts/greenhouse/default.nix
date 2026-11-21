@@ -4,7 +4,6 @@
     modules = with self.nixosModules; [
       greenhouseConfiguration
       server
-      zsh
     ];
   };
 }
