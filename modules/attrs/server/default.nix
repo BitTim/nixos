@@ -5,8 +5,9 @@
       modules = with self.nixosModules; [
         core
         bootloader-systemd
-        networking
         zsh
+        git
+        tailscale
       ];
     in
     {
