@@ -9,6 +9,7 @@
         git
         tailscale
         hyfetch
+        starship
       ];
     in
     {
