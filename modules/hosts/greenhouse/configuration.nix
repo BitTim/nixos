@@ -8,7 +8,6 @@
     boot.supportedFilesystems = [ "nfs" ];
 
     # LUKS drive encryption setup
-    boot.initrd.systemd.enable = true;
     security.tpm2.enable = true;
 
     # Root

@@ -1,4 +1,4 @@
-{ moduleWithSystem, ... }: {
+{ moduleWithSystem, inputs, ... }: {
   flake.nixosModules.jellyfin = moduleWithSystem (
     { ... }: { config, ... }: {
       users = {
