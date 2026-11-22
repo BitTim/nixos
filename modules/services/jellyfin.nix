@@ -24,7 +24,7 @@
             mpeg2 = true;
             hevc10bit = true;
           };
-          harwareEncodingCodecs = {
+          hardwareEncodingCodecs = {
             av1 = false;
             hevc = true;
           };
