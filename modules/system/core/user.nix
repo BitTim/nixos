@@ -8,7 +8,7 @@
             default = "lea";
           };
           description = lib.mkOption {
-            type = lib.type.str;
+            type = lib.types.str;
             default = "Lea Anhalt";
           };
         };
