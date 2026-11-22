@@ -8,7 +8,7 @@
         # Hardware acceleration
         hardwareAcceleration = {
           enable = true;
-          device = /dev/dri/renderD128;
+          device = "/dev/dri/renderD128";
           type = "qsv";
         };
         transcoding = {
