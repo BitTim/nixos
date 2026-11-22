@@ -1,18 +1,34 @@
-{ moduleWithSystem, ... }: {
+{ moduleWithSystem, lib, ... }: {
   flake.nixosModules.user = moduleWithSystem (
-    { self', ... }: {
-      users.users = {
-        lea = {
+    { self', ... }: { config, ... }: {
+      options.my = {
+        user = {
+          name = lib.mkOption {
+            type = lib.types.str;
+            default = "lea";
+          };
+          description = lib.mkOption {
+            type = lib.type.str;
+            default = "Lea Anhalt";
+          };
+        };
+      };
+
+      config.users.users = {
+        ${config.my.user.name} = {
           isNormalUser = true;
-          initialPassword = "password";
+          initialPassword = "changemeasap";
           shell = self'.packages.zsh;
-          description = "Lea Anhalt";
+          description = config.my.user.description;
           extraGroups = [
             "root"
             "wheel"
           ];
           openssh.authorizedKeys.keys = [
+            # MacBook
             "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPgs7XcyM955HeXFHc87jCGzhZbuxsZpxg0QsIWDaoqm orchid"
+
+            # Termius (iOS)
             "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBBrm11sS8KEXo3QY6LsmGKjMyIETDeKFcECbmkpiRh3tvWoio0Gf55kDX0yenYtAYg1+0bbHeaJZQ4LtndabvCU="
           ];
         };
