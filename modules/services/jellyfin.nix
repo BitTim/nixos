@@ -18,11 +18,6 @@
         };
       };
 
-      # Bind media
-      systemd.services.jellyfin.serviceConfig.BindPaths = [
-        "/mnt/soil/media:/media"
-      ];
-
       services.jellyfin = {
         enable = true;
         openFirewall = true; # Temporary since no reverse proxy yet
