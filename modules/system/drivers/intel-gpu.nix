@@ -9,10 +9,10 @@
           intel-media-driver
           vpl-gpu-rt
         ];
+      };
 
-        environment.sessionVariables = {
-          LIBVA_DRIVER_NAME = "iHD";
-        };
+      environment.sessionVariables = {
+        LIBVA_DRIVER_NAME = "iHD";
       };
     }
   );
