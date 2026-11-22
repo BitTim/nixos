@@ -1,5 +1,5 @@
 { moduleWithSystem, ... }: {
-  flake.nixosModule.intel-gpu = moduleWithSystem (
+  flake.nixosModules.intel-gpu = moduleWithSystem (
     { pkgs, ... }: {
       services.xserver.videoDrivers = [ "modesetting" ];
 
