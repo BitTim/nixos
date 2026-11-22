@@ -12,8 +12,12 @@
     };
   };
 
-  flake.nixosModules.nix = { ... }: {
+  flake.nixosModules.nix = { lib, ... }: {
     nix = {
+      settings.experimental-features = lib.mkDefault [
+        "nix-command"
+        "flakes"
+      ];
       nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
       optimise.automatic = true;
       gc = {
