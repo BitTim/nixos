@@ -4,6 +4,8 @@
     modules = with self.nixosModules; [
       greenhouseConfiguration
       server
+      intel-gpu
+      jellyfin
     ];
   };
 }
