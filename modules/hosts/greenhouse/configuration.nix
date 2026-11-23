@@ -9,7 +9,7 @@
     boot.supportedFilesystems = [ "nfs" ];
 
     # Setup SOPS to point to the actual file
-    sops.defaultSopsFile = ../../secrets/greenhouse.yaml;
+    sops.defaultSopsFile = ../../../secrets/greenhouse.yaml;
 
     # Configure Caddy
     my.caddy.acmeEmail = "lea@anhalt.me";
