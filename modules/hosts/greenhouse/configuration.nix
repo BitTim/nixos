@@ -13,7 +13,7 @@
 
     # Configure Caddy
     my.caddy.acmeEmail = "lea@anhalt.me";
-    my.caddy.trustedProxies = [ "100.77.46.2" ];
+    my.caddy.trustedProxies = [ "100.92.151.69" ];
 
     # LUKS drive encryption setup
     security.tpm2.enable = true;
