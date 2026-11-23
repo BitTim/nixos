@@ -10,6 +10,8 @@
         tailscale
         hyfetch
         starship
+        sops
+        domain
       ];
     in
     {

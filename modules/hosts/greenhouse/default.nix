@@ -6,6 +6,7 @@
       server
       intel-gpu
       jellyfin
+      caddy-internal
     ];
   };
 }

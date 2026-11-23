@@ -1,6 +1,11 @@
-{ moduleWithSystem, inputs, ... }: {
+{ moduleWithSystem, ... }: {
   flake.nixosModules.jellyfin = moduleWithSystem (
-    { ... }: { config, ... }: {
+    { ... }:
+    { config, ... }:
+    let
+      domain = config.my.domain;
+    in
+    {
       users = {
         groups = {
           jellyfin = { };
@@ -20,7 +25,6 @@
 
       services.jellyfin = {
         enable = true;
-        openFirewall = true; # Temporary since no reverse proxy yet
 
         # User setup (Use the use the uer and group from above)
         user = "jellyfin";
@@ -50,6 +54,15 @@
             hevc = true;
           };
         };
+      };
+
+      # Reverse Proxy Setup
+      services.caddy.virtualHosts = {
+        "firefly.internal.${domain}, firefly.local.${domain}".extraConfig = ''
+          tls { dns cloudflare {env.CF_API_TOKEN} }
+          reverse_proxy 127.0.0.1:8096
+        '';
+        "http://firefly.${domain}".extraConfig = "reverse_proxy 127.0.0.1:8096";
       };
     }
   );

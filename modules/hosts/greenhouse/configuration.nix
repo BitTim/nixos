@@ -3,9 +3,17 @@
     imports = [ ./_hardware-configuration.nix ];
 
     networking.hostName = "greenhouse";
+    my.domain = "undefbloom.com";
 
     # Enable NFS
     boot.supportedFilesystems = [ "nfs" ];
+
+    # Setup SOPS to point to the actual file
+    sops.defaultSopsFile = ../../secrets/greenhouse.yaml;
+
+    # Configure Caddy
+    my.caddy.acmeEmail = "lea@anhalt.me";
+    my.caddy.trustedProxies = [ "100.77.46.2" ];
 
     # LUKS drive encryption setup
     security.tpm2.enable = true;

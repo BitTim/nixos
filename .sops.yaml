@@ -1,0 +1,7 @@
+keys:
+  - &admin age14qj6kmgmt7x2fjr953azpnrksanl8pezjs8gf8e0frw8tu7lj4vq4v72mq
+  - &greenhouse age168jwhnklszagjnfzzw2ufza2ycw8se9sl9e3907mrkkcv9ewmsusktdrcu
+creation_rules:
+  - path_regex: secrets/greenhouse.yaml$
+    key_groups:
+      - age: [ *admin, *greenhouse ]
