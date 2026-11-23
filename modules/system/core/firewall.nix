@@ -1,5 +1,5 @@
 { ... }: {
-  flake.nixosModule.firewall = { ... }: {
+  flake.nixosModules.firewall = { ... }: {
     networking.firewall.enable = true;
   };
 }
