@@ -7,6 +7,7 @@
         locale
         nix
         ssh
+        firewall
       ];
     in
     {
