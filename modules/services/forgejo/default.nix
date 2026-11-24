@@ -77,9 +77,9 @@
           services.caddy.virtualHosts = {
             "${subdomain}.internal.${domain}, ${subdomain}.local.${domain}".extraConfig = ''
               tls { dns cloudflare {env.CF_API_TOKEN} }
-              reverse_proxy 127.0.0.1:8096
+              reverse_proxy 127.0.0.1:${srv.HTTP_PORT}
             '';
-            "http://${subdomain}.${domain}".extraConfig = "reverse_proxy 127.0.0.1:8096";
+            "http://${subdomain}.${domain}".extraConfig = "reverse_proxy 127.0.0.1:${srv.HTTP_PORT}";
           };
         };
     }
