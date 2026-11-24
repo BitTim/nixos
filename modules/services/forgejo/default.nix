@@ -59,7 +59,7 @@
               pwd = config.sops.secrets.forgejo-admin-password;
             in
             ''
-              ${adminCmd} create --admin --email "${email}" --username "${name}: --password "$(tr -d '\n' < ${pwd.path})" || true
+              ${adminCmd} create --admin --email "${email}" --username "${name}" --password "$(tr -d '\n' < ${pwd.path})" || true
             '';
 
           # SSH config
