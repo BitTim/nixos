@@ -53,17 +53,14 @@
           sops.secrets.forgejo-admin-password.owner = "forgejo";
 
           # Ensure an admin user is present
-          systemd.services.forgejo = {
-            serviceConfig.EnvironmentFile = config.sops.templates."forgejo.env".path;
-            preStart =
-              let
-                adminCmd = "${lib.getExe config.services.forgejo.package} admin user";
-                pwd = config.sops.secrets.forgejo-admin-password;
-              in
-              ''
-                ${adminCmd} create --admin --email "${email}" --username "${name}: --password "$(tr -d '\n' < ${pwd.path})" || true
-              '';
-          };
+          systemd.services.forgejo.preStart =
+            let
+              adminCmd = "${lib.getExe config.services.forgejo.package} admin user";
+              pwd = config.sops.secrets.forgejo-admin-password;
+            in
+            ''
+              ${adminCmd} create --admin --email "${email}" --username "${name}: --password "$(tr -d '\n' < ${pwd.path})" || true
+            '';
 
           # SSH config
           services.openssh.settings.AllowUsers = [ "forgejo" ];
