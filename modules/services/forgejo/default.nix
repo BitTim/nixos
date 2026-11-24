@@ -49,14 +49,8 @@
             };
           };
 
-          sops = {
-            secrets = {
-              forgejo-admin-password = { };
-            };
-            templates."forgejo.env".content = ''
-              FORGEJO_ADMIN_PASSWORD=${config.sops.placeholder.forgejo-admin-password}
-            '';
-          };
+          sops.secrets.forgejo-admin-password = { };
+          sops.secrets.forgejo-admin-password.owner = "forgejo";
 
           # Ensure an admin user is present
           systemd.services.forgejo = {
@@ -64,9 +58,10 @@
             preStart =
               let
                 adminCmd = "${lib.getExe config.services.forgejo.package} admin user";
+                pwd = config.sops.secrets.forgejo-admin-password;
               in
               ''
-                ${adminCmd} create --admin --email ${email} --username ${name} --password "$FORGEJO_ADMIN_PASSWORD" || true
+                ${adminCmd} create --admin --email "${email}" --username "${name}: --password "${pwd}" || true
               '';
           };
 
