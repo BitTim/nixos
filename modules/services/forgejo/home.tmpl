@@ -7,18 +7,19 @@
 				<h1 class="ui icon header title">
 					{{AppDisplayName}}
 				</h1>
-				<h2>{{ctx.Locale.Tr "startpage.app_desc"}}</h2>
+				<h2>
+					{{if eq ctx.Locale.Language "de-DE"}}Ein selbst gehostetes Zuhause für Software-Projekte
+					{{else}}A self-hosted home for software projects{{end}}
+				</h2>
 			</div>
 		</div>
 	</div>
 
 	<div class="center tw-mt-8">
 		{{if eq ctx.Locale.Language "de-DE"}}
-		<p>Alle meine Projekte sind hier zu finden</p>
-		<a class="ui primary button" href="{{AppSubUrl}}/explore/repos">Meine Repositories ansehen</a>
+		<a class="ui primary button" href="{{AppSubUrl}}/explore/repos">Repositories ansehen</a>
 		{{else}}
-		<p>All my projects can be found here</p>
-		<a class="ui primary button" href="{{AppSubUrl}}/explore/repos">Browse my repositories</a>
+		<a class="ui primary button" href="{{AppSubUrl}}/explore/repos">Browse repositories</a>
 		{{end}}
 	</div>
 </div>

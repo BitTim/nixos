@@ -38,6 +38,7 @@
             database.type = "postgres";
             lfs.enable = true;
             settings = {
+              DEFAULT.APP_NAME = "Bee";
               server = {
                 DOMAIN = "${subdomain}.${domain}";
                 ROOT_URL = "https://${srv.DOMAIN}/";
