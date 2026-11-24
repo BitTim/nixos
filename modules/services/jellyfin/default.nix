@@ -12,7 +12,11 @@
           jellyfin = {
             isSystemUser = true;
             group = "jellyfin";
-            extraGroups = [ "media" ];
+            extraGroups = [
+              "media"
+              "video"
+              "render"
+            ];
           };
 
           # Add main user to "media" group as well
