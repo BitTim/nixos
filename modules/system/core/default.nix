@@ -8,6 +8,7 @@
         nix
         ssh
         firewall
+        sops
       ];
     in
     {
