@@ -5,8 +5,9 @@
       greenhouseConfiguration
       server
       intel-gpu
-      jellyfin
       caddy-internal
+      jellyfin
+      forgejo
     ];
   };
 }
