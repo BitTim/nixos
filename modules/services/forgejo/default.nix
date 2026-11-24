@@ -45,7 +45,7 @@
                 SSH_PORT = head config.services.openssh.ports;
               };
 
-              services.DISABLE_REGISTRATION = true;
+              service.DISABLE_REGISTRATION = true;
             };
           };
 
