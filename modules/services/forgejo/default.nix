@@ -45,7 +45,7 @@
                 SSH_PORT = head config.services.openssh.ports;
               };
 
-              services.DISABLE_REGISTRATION = false; # Temp until user is created
+              services.DISABLE_REGISTRATION = true;
             };
           };
 
@@ -66,7 +66,7 @@
                 adminCmd = "${lib.getExe config.services.forgejo.package} admin user";
               in
               ''
-                ${adminCmd} create --admin --email ${email} --username ${name} --password "$(tr -d '\n' < $FORGEJO_ADMIN_PASSWORD)" || true
+                ${adminCmd} create --admin --email ${email} --username ${name} --password "$FORGEJO_ADMIN_PASSWORD" || true
               '';
           };
 
@@ -74,13 +74,7 @@
           services.openssh.settings.AllowUsers = [ "forgejo" ];
 
           # Reverse Proxy Setup
-          services.caddy.virtualHosts = {
-            "${subdomain}.internal.${domain}, ${subdomain}.local.${domain}".extraConfig = ''
-              tls { dns cloudflare {env.CF_API_TOKEN} }
-              reverse_proxy 127.0.0.1:${toString srv.HTTP_PORT}
-            '';
-            "http://${subdomain}.${domain}".extraConfig = "reverse_proxy 127.0.0.1:${toString srv.HTTP_PORT}";
-          };
+          my.proxy.${subdomain}.port = config.services.forgejo.settings.server.HTTP_PORT;
         };
     }
   );
