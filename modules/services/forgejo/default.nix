@@ -64,21 +64,21 @@
               '';
 
             # SSH config
-            services.openssh.settings.AllowUsers = [ "forgejo" ];
+            openssh.settings.AllowUsers = [ "forgejo" ];
 
-            # Reverse Proxy Setup
-            my.proxy.${subdomain}.port = config.services.forgejo.settings.server.HTTP_PORT;
+            # Theming
+            systemd.tmpfiles.rules = [
+              "d '${config.services.forgejo.customDir}/templates' - forgejo forgejo - -"
+              "d '${config.services.forgejo.customDir}/public' - forgejo forgejo - -"
+              "d '${config.services.forgejo.customDir}/public/assets' - forgejo forgejo - -"
+              "d '${config.services.forgejo.customDir}/public/assets/css' - forgejo forgejo - -"
+              "C+ '${config.services.forgejo.customDir}/templates/home.tmpl' - forgejo forgejo - ${./home.tmpl}"
+              "C+ '${config.services.forgejo.customDir}/templates/extra_links.tmpl' - forgejo forgejo - ${./extra_links.tmpl}"
+            ];
           };
 
-          # Theming
-          systemd.tmpfiles.rules = [
-            "d '${config.services.forgejo.customDir}/templates' - forgejo forgejo - -"
-            "d '${config.services.forgejo.customDir}/public' - forgejo forgejo - -"
-            "d '${config.services.forgejo.customDir}/public/assets' - forgejo forgejo - -"
-            "d '${config.services.forgejo.customDir}/public/assets/css' - forgejo forgejo - -"
-            "C+ '${config.services.forgejo.customDir}/templates/home.tmpl' - forgejo forgejo - ${./home.tmpl}"
-            "C+ '${config.services.forgejo.customDir}/templates/extra_links.tmpl' - forgejo forgejo - ${./extra_links.tmpl}"
-          ];
+          # Reverse Proxy Setup
+          my.proxy.${subdomain}.port = config.services.forgejo.settings.server.HTTP_PORT;
         };
     }
   );
