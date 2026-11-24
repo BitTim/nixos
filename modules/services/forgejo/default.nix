@@ -69,15 +69,23 @@
           my.proxy.${subdomain}.port = config.services.forgejo.settings.server.HTTP_PORT;
 
           # Theming
-          systemd.tmpfiles.rules = [
-            "d '${config.services.forgejo.customDir}/templates' - forgejo forgejo - -"
-            "d '${config.services.forgejo.customDir}/templates/custom' - forgejo forgejo - -"
-            "d '${config.services.forgejo.customDir}/public' - forgejo forgejo - -"
-            "d '${config.services.forgejo.customDir}/public/assets' - forgejo forgejo - -"
-            "d '${config.services.forgejo.customDir}/public/assets/css' - forgejo forgejo - -"
-            "L+ '${config.services.forgejo.customDir}/templates/home.tmpl' - - - - ${./home.tmpl}"
-            "L+ '${config.services.forgejo.customDir}/templates/custom/extra_links.tmpl' - - - - ${./extra_links.tmpl}"
-          ];
+          systemd.tmpfiles.rules =
+            let
+              customDir = config.services.forgejo.customDir;
+            in
+            [
+              "d '${customDir}/templates' - forgejo forgejo - -"
+              "d '${customDir}/templates/custom' - forgejo forgejo - -"
+              "d '${customDir}/public' - forgejo forgejo - -"
+              "d '${customDir}/public/assets' - forgejo forgejo - -"
+              "d '${customDir}/public/assets/css' - forgejo forgejo - -"
+              "L+ '${customDir}/templates/home.tmpl' - - - - ${./home.tmpl}"
+              "L+ '${customDir}/templates/custom/extra_links.tmpl' - - - - ${./extra_links.tmpl}"
+              "d '${customDir}/options' - - - -"
+              "d '${customDir}/options/locale' - - - -"
+              "L+ '${customDir}/options/locale/locale_en-US.ini' - - - - ${./locale_en-US.ini}"
+              "L+ '${customDir}/options/locale/locale_de-DE.ini' - - - - ${./locale_de-DE.ini}"
+            ];
         };
     }
   );
