@@ -46,6 +46,11 @@
                 SSH_PORT = head config.services.openssh.ports;
               };
 
+              ui = {
+                DEFAULT_THEME = "rose-pine-rose";
+                THEMES = "forgejo-auto,forgejo-light,forgejo-dark,rose-pine-rose";
+              };
+
               service.DISABLE_REGISTRATION = true;
             };
           };
@@ -82,6 +87,7 @@
               "d '${customDir}/public/assets/css' - forgejo forgejo - -"
               "L+ '${customDir}/templates/home.tmpl' - - - - ${./home.tmpl}"
               "L+ '${customDir}/templates/custom/extra_links.tmpl' - - - - ${./extra_links.tmpl}"
+              "L+ '${customDir}/public/assets/css/theme-rose-pine-rose.css' - forgejo forgejo - ${./theme-rose-pine-rose.css}"
             ];
         };
     }
