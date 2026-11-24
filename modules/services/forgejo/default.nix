@@ -1,4 +1,10 @@
-{ moduleWithSystem, lib, ... }: {
+{
+  moduleWithSystem,
+  inputs,
+  lib,
+  ...
+}:
+{
   flake.nixosModules.forgejo = moduleWithSystem (
     { ... }:
     { config, ... }:
@@ -47,8 +53,21 @@
               };
 
               ui = {
-                DEFAULT_THEME = "rose-pine-rose";
-                THEMES = "forgejo-auto,forgejo-light,forgejo-dark,rose-pine-rose";
+                DEFAULT_THEME = "forgejo-nixos-pride-auto";
+                THEMES = builtins.concatStringsSep "," [
+                  # upstream defaults
+                  "forgejo-auto"
+                  "forgejo-light"
+                  "forgejo-dark"
+                  # NixOS recolor — this flake's standard variants
+                  "forgejo-nixos-auto"
+                  "forgejo-nixos-light"
+                  "forgejo-nixos-dark"
+                  # NixOS recolor + Pride categorical swap
+                  "forgejo-nixos-pride-auto"
+                  "forgejo-nixos-pride-light"
+                  "forgejo-nixos-pride-dark"
+                ];
               };
 
               service.DISABLE_REGISTRATION = true;
@@ -75,19 +94,15 @@
           my.proxy.${subdomain}.port = config.services.forgejo.settings.server.HTTP_PORT;
 
           # Theming
+          nixpkgs.overlays = [ inputs.forgejo-nixos-themes.overlays.default ];
           systemd.tmpfiles.rules =
             let
-              customDir = config.services.forgejo.customDir;
+              cfg = config.services.forgejo;
             in
             [
-              "d '${customDir}/templates' - forgejo forgejo - -"
-              "d '${customDir}/templates/custom' - forgejo forgejo - -"
-              "d '${customDir}/public' - forgejo forgejo - -"
-              "d '${customDir}/public/assets' - forgejo forgejo - -"
-              "d '${customDir}/public/assets/css' - forgejo forgejo - -"
-              "L+ '${customDir}/templates/home.tmpl' - - - - ${./home.tmpl}"
-              "L+ '${customDir}/templates/custom/extra_links.tmpl' - - - - ${./extra_links.tmpl}"
-              "L+ '${customDir}/public/assets/css/theme-rose-pine-rose.css' - forgejo forgejo - ${./theme-rose-pine-rose.css}"
+              "d ${cfg.customDir}/public 0755 ${cfg.user} ${cfg.group} - -"
+              "L+ '${cfg.customDir}/templates/home.tmpl' - - - - ${./home.tmpl}"
+              "L+ '${cfg.customDir}/templates/custom/extra_links.tmpl' - - - - ${./extra_links.tmpl}"
             ];
         };
     }
