@@ -6,7 +6,7 @@
 }:
 {
   flake.nixosModules.forgejo = moduleWithSystem (
-    { ... }:
+    { pkgs, ... }:
     { config, ... }:
     let
       inherit (lib.lists) head;
@@ -108,6 +108,7 @@
 
               "L+ '${cfg.customDir}/templates/home.tmpl' - - - - ${./home.tmpl}"
               "L+ '${cfg.customDir}/templates/custom/extra_links.tmpl' - - - - ${./extra_links.tmpl}"
+              "L+ ${cfg.customDir}/public/assets - - - - ${pkgs.forgejo-nixos-themes}/assets"
             ];
         };
     }
