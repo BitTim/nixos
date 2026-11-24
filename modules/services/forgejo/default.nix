@@ -1,13 +1,11 @@
 {
-  moduleWithSystem,
   inputs,
   lib,
   ...
 }:
 {
-  flake.nixosModules.forgejo = moduleWithSystem (
-    { pkgs, ... }:
-    { config, ... }:
+  flake.nixosModules.forgejo =
+    { config, pkgs, ... }:
     let
       inherit (lib.lists) head;
       domain = config.my.domain;
@@ -111,6 +109,5 @@
               "L+ ${cfg.customDir}/public/assets - - - - ${pkgs.forgejo-nixos-themes}/assets"
             ];
         };
-    }
-  );
+    };
 }
