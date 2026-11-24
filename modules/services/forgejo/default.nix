@@ -75,8 +75,8 @@
             "d '${config.services.forgejo.customDir}/public' - forgejo forgejo - -"
             "d '${config.services.forgejo.customDir}/public/assets' - forgejo forgejo - -"
             "d '${config.services.forgejo.customDir}/public/assets/css' - forgejo forgejo - -"
-            "C+ '${config.services.forgejo.customDir}/templates/home.tmpl' - forgejo forgejo - ${./home.tmpl}"
-            "C+ '${config.services.forgejo.customDir}/templates/custom/extra_links.tmpl' - forgejo forgejo - ${./extra_links.tmpl}"
+            "L+ '${config.services.forgejo.customDir}/templates/home.tmpl' - - - - ${./home.tmpl}"
+            "L+ '${config.services.forgejo.customDir}/templates/custom/extra_links.tmpl' - - - - ${./extra_links.tmpl}"
           ];
         };
     }
