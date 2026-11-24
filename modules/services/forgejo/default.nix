@@ -32,53 +32,51 @@
           email = config.my.forgejo.adminEmail;
         in
         {
-          services = {
-            forgejo = {
-              enable = true;
+          services.forgejo = {
+            enable = true;
 
-              database.type = "postgres";
-              lfs.enable = true;
-              settings = {
-                server = {
-                  DOMAIN = "${subdomain}.${domain}";
-                  ROOT_URL = "https://${srv.DOMAIN}/";
-                  HTTP_PORT = 3000;
-                  SSH_PORT = head config.services.openssh.ports;
-                };
-
-                service.DISABLE_REGISTRATION = true;
+            database.type = "postgres";
+            lfs.enable = true;
+            settings = {
+              server = {
+                DOMAIN = "${subdomain}.${domain}";
+                ROOT_URL = "https://${srv.DOMAIN}/";
+                HTTP_PORT = 3000;
+                SSH_PORT = head config.services.openssh.ports;
               };
+
+              service.DISABLE_REGISTRATION = true;
             };
-
-            sops.secrets.forgejo-admin-password = { };
-            sops.secrets.forgejo-admin-password.owner = "forgejo";
-
-            # Ensure an admin user is present
-            systemd.services.forgejo.preStart =
-              let
-                adminCmd = "${lib.getExe config.services.forgejo.package} admin user";
-                pwd = config.sops.secrets.forgejo-admin-password;
-              in
-              ''
-                ${adminCmd} create --admin --email "${email}" --username "${name}" --password "$(tr -d '\n' < ${pwd.path})" || true
-              '';
-
-            # SSH config
-            openssh.settings.AllowUsers = [ "forgejo" ];
-
-            # Theming
-            systemd.tmpfiles.rules = [
-              "d '${config.services.forgejo.customDir}/templates' - forgejo forgejo - -"
-              "d '${config.services.forgejo.customDir}/public' - forgejo forgejo - -"
-              "d '${config.services.forgejo.customDir}/public/assets' - forgejo forgejo - -"
-              "d '${config.services.forgejo.customDir}/public/assets/css' - forgejo forgejo - -"
-              "C+ '${config.services.forgejo.customDir}/templates/home.tmpl' - forgejo forgejo - ${./home.tmpl}"
-              "C+ '${config.services.forgejo.customDir}/templates/extra_links.tmpl' - forgejo forgejo - ${./extra_links.tmpl}"
-            ];
           };
+
+          sops.secrets.forgejo-admin-password = { };
+          sops.secrets.forgejo-admin-password.owner = "forgejo";
+
+          # Ensure an admin user is present
+          systemd.services.forgejo.preStart =
+            let
+              adminCmd = "${lib.getExe config.services.forgejo.package} admin user";
+              pwd = config.sops.secrets.forgejo-admin-password;
+            in
+            ''
+              ${adminCmd} create --admin --email "${email}" --username "${name}" --password "$(tr -d '\n' < ${pwd.path})" || true
+            '';
+
+          # SSH config
+          services.openssh.settings.AllowUsers = [ "forgejo" ];
 
           # Reverse Proxy Setup
           my.proxy.${subdomain}.port = config.services.forgejo.settings.server.HTTP_PORT;
+
+          # Theming
+          systemd.tmpfiles.rules = [
+            "d '${config.services.forgejo.customDir}/templates' - forgejo forgejo - -"
+            "d '${config.services.forgejo.customDir}/public' - forgejo forgejo - -"
+            "d '${config.services.forgejo.customDir}/public/assets' - forgejo forgejo - -"
+            "d '${config.services.forgejo.customDir}/public/assets/css' - forgejo forgejo - -"
+            "C+ '${config.services.forgejo.customDir}/templates/home.tmpl' - forgejo forgejo - ${./home.tmpl}"
+            "C+ '${config.services.forgejo.customDir}/templates/extra_links.tmpl' - forgejo forgejo - ${./extra_links.tmpl}"
+          ];
         };
     }
   );
