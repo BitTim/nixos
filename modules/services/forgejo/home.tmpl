@@ -13,10 +13,13 @@
 	</div>
 
 	<div class="center tw-mt-8">
-		<p>{{ctx.Locale.Tr "home.repos_text"}}</p>
-		<a class="ui primary button" href="{{AppSubUrl}}/explore/repos">
-			{{ctx.Locale.Tr "home.repos_button"}}
-		</a>
+		{{if eq ctx.Locale.Language "de-DE"}}
+		<p>Alle meine Projekte sind hier zu finden</p>
+		<a class="ui primary button" href="{{AppSubUrl}}/explore/repos">Meine Repositories ansehen</a>
+		{{else}}
+		<p>All my projects can be found here</p>
+		<a class="ui primary button" href="{{AppSubUrl}}/explore/repos">Browse my repositories</a>
+		{{end}}
 	</div>
 </div>
 {{template "base/footer" .}}

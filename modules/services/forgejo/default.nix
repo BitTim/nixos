@@ -81,10 +81,6 @@
               "d '${customDir}/public/assets/css' - forgejo forgejo - -"
               "L+ '${customDir}/templates/home.tmpl' - - - - ${./home.tmpl}"
               "L+ '${customDir}/templates/custom/extra_links.tmpl' - - - - ${./extra_links.tmpl}"
-              "d '${customDir}/options' - - - -"
-              "d '${customDir}/options/locale' - - - -"
-              "L+ '${customDir}/options/locale/locale_en-US.ini' - - - - ${./locale_en-US.ini}"
-              "L+ '${customDir}/options/locale/locale_de-DE.ini' - - - - ${./locale_de-DE.ini}"
             ];
         };
     }
