@@ -100,7 +100,12 @@
               cfg = config.services.forgejo;
             in
             [
-              "d ${cfg.customDir}/public 0755 ${cfg.user} ${cfg.group} - -"
+              "d '${cfg.customDir}/templates' - ${cfg.user} ${cfg.group} - -"
+              "d '${cfg.customDir}/templates/custom' - ${cfg.user} ${cfg.group} - -"
+              "d '${cfg.customDir}/public' - ${cfg.user} ${cfg.group} - -"
+              "d '${cfg.customDir}/public/assets' - ${cfg.user} ${cfg.group} - -"
+              "d '${cfg.customDir}/public/assets/css' - ${cfg.user} ${cfg.group} - -"
+
               "L+ '${cfg.customDir}/templates/home.tmpl' - - - - ${./home.tmpl}"
               "L+ '${cfg.customDir}/templates/custom/extra_links.tmpl' - - - - ${./extra_links.tmpl}"
             ];

@@ -18,6 +18,26 @@
         "type": "github"
       }
     },
+    "forgejo-nixos-themes": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1778254624,
+        "narHash": "sha256-nKxbFkH6iyyBP4scs8J5vS3v+7+BwB/D6dGViGbmxqw=",
+        "ref": "refs/heads/main",
+        "rev": "eccc150e40473960eba70c89ae5b235b50176739",
+        "revCount": 8,
+        "type": "git",
+        "url": "https://git.fnord.cx/codec/forgejo-nixos-themes"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.fnord.cx/codec/forgejo-nixos-themes"
+      }
+    },
     "import-tree": {
       "locked": {
         "lastModified": 1788467110,
@@ -83,6 +103,7 @@
     "root": {
       "inputs": {
         "flake-parts": "flake-parts",
+        "forgejo-nixos-themes": "forgejo-nixos-themes",
         "import-tree": "import-tree",
         "nixpkgs": "nixpkgs",
         "sops-nix": "sops-nix",
