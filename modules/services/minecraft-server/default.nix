@@ -29,7 +29,7 @@
 
       in
       {
-        servies.minecraft-server = {
+        services.minecraft-server = {
           enable = true;
           openFirewall = true;
           package = pkgs.papermc;
