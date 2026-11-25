@@ -9,6 +9,7 @@
       jellyfin
       seerr
       forgejo
+      minecraft-server
     ];
   };
 }
