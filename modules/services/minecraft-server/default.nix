@@ -10,7 +10,7 @@
       whitelist = {
         undefbloom = "730bdb73-3c5b-4f5f-84cb-ca86fca21cda";
       };
-      server-properties = {
+      serverProperties = {
         difficulty = "normal";
         enforce-whitelist = true;
         gamemode = "survival";
