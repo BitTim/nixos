@@ -2,6 +2,7 @@
   flake.nixosModules.minecraft-server = { pkgs, ... }: {
     services.minecraft-server = {
       enable = true;
+      openFirewall = true;
       package = pkgs.papermc;
       declarative = true;
 
