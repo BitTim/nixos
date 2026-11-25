@@ -7,6 +7,7 @@
       intel-gpu
       caddy-internal
       jellyfin
+      seerr
       forgejo
     ];
   };
