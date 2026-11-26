@@ -10,6 +10,7 @@
       seerr
       forgejo
       minecraft-server
+      immich
     ];
   };
 }
