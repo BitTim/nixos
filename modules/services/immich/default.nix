@@ -30,5 +30,8 @@
       mediaLocation = "/mnt/soil/immich";
       accelerationDevices = null;
     };
+
+    # Reverse Proxy Setup
+    my.proxy.magpie.port = 2283;
   };
 }
