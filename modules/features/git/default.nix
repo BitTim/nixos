@@ -22,7 +22,7 @@
       };
 
       sops.secrets.gpg-signing-key = {
-        sopsFile = "../../../secrets/git.yaml";
+        sopsFile = ../../../secrets/git.yaml;
         owner = config.my.user.name;
       };
 
