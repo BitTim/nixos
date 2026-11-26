@@ -27,6 +27,7 @@
       user = "immich";
       group = "immich";
 
+      host = "0.0.0.0";
       mediaLocation = "/mnt/soil/immich";
       accelerationDevices = null;
     };
