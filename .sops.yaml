@@ -1,13 +1,17 @@
 keys:
   - &admin age14qj6kmgmt7x2fjr953azpnrksanl8pezjs8gf8e0frw8tu7lj4vq4v72mq
   - &greenhouse age168jwhnklszagjnfzzw2ufza2ycw8se9sl9e3907mrkkcv9ewmsusktdrcu
+  - &arbor age1eatysa7yg88ul6es3c779krr50lzwwlgys7y9pwx68pketqw3afsz8z6js 
 creation_rules:
   - path_regex: secrets/git.yaml
     key_groups:
-      - age: [ *admin, *greenhouse ]
+      - age: [ *admin, *greenhouse, *arbor ]
+  - path_regex: secrets/user.yaml
+    key_groups:
+      - age: [ *admin, *greenhouse, *arbor ]
   - path_regex: secrets/greenhouse.yaml$
     key_groups:
       - age: [ *admin, *greenhouse ]
   - path_regex: secrets/arbor.yaml$
     key_groups:
-      - age: [ *admin ]
+      - age: [ *admin, *arbor ]

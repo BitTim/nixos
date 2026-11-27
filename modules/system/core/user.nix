@@ -15,7 +15,11 @@
       };
 
       config = {
-        sops.secrets.user-password.neededForUsers = true;
+        sops.secrets.user-password = {
+          sopsFile = ../../../secrets/user.yaml;
+          neededForUsers = true;
+        };
+
         users.users = {
           ${config.my.user.name} = {
             isNormalUser = true;
