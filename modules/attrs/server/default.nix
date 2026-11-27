@@ -6,6 +6,7 @@
         core
         bootloader-systemd
         zsh
+        nvim
         git
         tailscale
         hyfetch
