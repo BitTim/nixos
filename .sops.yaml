@@ -8,3 +8,6 @@ creation_rules:
   - path_regex: secrets/greenhouse.yaml$
     key_groups:
       - age: [ *admin, *greenhouse ]
+  - path_regex: secrets/arbor.yaml$
+    key_groups:
+      - age: [ *admin ]
