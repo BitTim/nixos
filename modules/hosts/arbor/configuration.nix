@@ -21,6 +21,10 @@
     my.caddy-portal.tempRedirects = {
       "${config.my.domain}" = "https://lnk.bio/undefbloom";
       "www.${config.my.domain}" = "https://lnk.bio/undefbloom";
+
+      # Legacy redirects
+      "bittim.dev" = "https://linktr.ee/bittim";
+      "www.bittim.dev" = "https://linktr.ee/bittim";
     };
 
     # Configure forwards
