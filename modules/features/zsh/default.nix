@@ -14,11 +14,6 @@
   perSystem = { pkgs, lib, ... }: {
     packages.zsh = inputs.wrappers.wrappers.zsh.wrap {
       inherit pkgs;
-      zshAliases = {
-        nv = lib.getExe pkgs.neovim;
-        hf = lib.getExe pkgs.hyfetch;
-        cat = lib.getExe pkgs.bat;
-      };
     };
   };
 }

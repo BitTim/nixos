@@ -12,6 +12,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nvim.url = "git+https://bee.undefbloom.com/undefbloom/nvim";
+
     forgejo-nixos-themes = {
       url = "git+https://git.fnord.cx/codec/forgejo-nixos-themes";
       inputs.nixpkgs.follows = "nixpkgs";
